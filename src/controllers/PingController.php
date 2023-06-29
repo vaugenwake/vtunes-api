@@ -13,7 +13,7 @@ use willitscale\Streetlamp\Enums\MediaType;
 #[RouteController]
 class PingController
 {
-    #[Path('/ping')]
+    #[Path('/')]
     #[Method(HttpMethod::GET)]
     public function index(): ResponseBuilder
     {
