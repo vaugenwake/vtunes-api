@@ -1,0 +1,147 @@
+{
+  "AttributeDefinitions": [
+    {
+      "AttributeName": "PK",
+      "AttributeType": "S"
+    },
+    {
+      "AttributeName": "SK",
+      "AttributeType": "S"
+    },
+    {
+      "AttributeName": "GSI1_PK",
+      "AttributeType": "S"
+    },
+    {
+      "AttributeName": "GSI1_SK",
+      "AttributeType": "S"
+    },
+    {
+      "AttributeName": "GSI2_PK",
+      "AttributeType": "S"
+    },
+    {
+      "AttributeName": "GSI2_SK",
+      "AttributeType": "S"
+    },
+    {
+      "AttributeName": "GSI3_PK",
+      "AttributeType": "S"
+    },
+    {
+      "AttributeName": "GSI3_SK",
+      "AttributeType": "S"
+    }
+  ],
+  "TableName": "MusicPlatform",
+  "KeySchema": [
+    {
+      "AttributeName": "PK",
+      "KeyType": "HASH"
+    },
+    {
+      "AttributeName": "SK",
+      "KeyType": "RANGE"
+    }
+  ],
+  "TableStatus": "ACTIVE",
+  "CreationDateTime": "2023-06-28T21:31:30.061Z",
+  "ProvisionedThroughput": {
+    "LastIncreaseDateTime": "1970-01-01T00:00:00.000Z",
+    "LastDecreaseDateTime": "1970-01-01T00:00:00.000Z",
+    "NumberOfDecreasesToday": 0,
+    "ReadCapacityUnits": 1,
+    "WriteCapacityUnits": 1
+  },
+  "TableSizeBytes": 0,
+  "ItemCount": 0,
+  "TableArn": "arn:aws:dynamodb:ddblocal:000000000000:table/MusicPlatform",
+  "GlobalSecondaryIndexes": [
+    {
+      "IndexName": "GSI1_UsersEmail",
+      "KeySchema": [
+        {
+          "AttributeName": "GSI1_PK",
+          "KeyType": "HASH"
+        },
+        {
+          "AttributeName": "GSI1_SK",
+          "KeyType": "RANGE"
+        }
+      ],
+      "Projection": {
+        "ProjectionType": "INCLUDE",
+        "NonKeyAttributes": [
+          "id",
+          "email",
+          "password",
+          "activated"
+        ]
+      },
+      "IndexStatus": "ACTIVE",
+      "ProvisionedThroughput": {
+        "ReadCapacityUnits": 1,
+        "WriteCapacityUnits": 1
+      },
+      "IndexSizeBytes": 0,
+      "ItemCount": 0,
+      "IndexArn": "arn:aws:dynamodb:ddblocal:000000000000:table/MusicPlatform/index/GSI1_UsersEmail"
+    },
+    {
+      "IndexName": "GSI2_Albums",
+      "KeySchema": [
+        {
+          "AttributeName": "GSI2_PK",
+          "KeyType": "HASH"
+        },
+        {
+          "AttributeName": "GSI2_SK",
+          "KeyType": "RANGE"
+        }
+      ],
+      "Projection": {
+        "ProjectionType": "INCLUDE",
+        "NonKeyAttributes": [
+          "id",
+          "name"
+        ]
+      },
+      "IndexStatus": "ACTIVE",
+      "ProvisionedThroughput": {
+        "ReadCapacityUnits": 1,
+        "WriteCapacityUnits": 1
+      },
+      "IndexSizeBytes": 0,
+      "ItemCount": 0,
+      "IndexArn": "arn:aws:dynamodb:ddblocal:000000000000:table/MusicPlatform/index/GSI2_Albums"
+    },
+    {
+      "IndexName": "GSI3_ArtistAlbum",
+      "KeySchema": [
+        {
+          "AttributeName": "GSI3_PK",
+          "KeyType": "HASH"
+        },
+        {
+          "AttributeName": "GSI3_SK",
+          "KeyType": "RANGE"
+        }
+      ],
+      "Projection": {
+        "ProjectionType": "INCLUDE",
+        "NonKeyAttributes": [
+          "id",
+          "name"
+        ]
+      },
+      "IndexStatus": "ACTIVE",
+      "ProvisionedThroughput": {
+        "ReadCapacityUnits": 1,
+        "WriteCapacityUnits": 1
+      },
+      "IndexSizeBytes": 0,
+      "ItemCount": 0,
+      "IndexArn": "arn:aws:dynamodb:ddblocal:000000000000:table/MusicPlatform/index/GSI3_ArtistAlbum"
+    }
+  ]
+}

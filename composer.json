@@ -1,0 +1,19 @@
+{
+    "name": "vaugenwakeling/api",
+    "autoload": {
+        "psr-4": {
+            "Vaugenwakeling\\Api\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Vaugen Wakeling",
+            "email": "vaugen.wakeling@gmail.com"
+        }
+    ],
+    "require": {
+        "willitscale/streetlamp": "^0.1.3",
+        "aws/aws-sdk-php": "^3.275",
+        "vlucas/phpdotenv": "^5.5"
+    }
+}
