@@ -1,0 +1,25 @@
+name: Deployment
+
+on:
+  push:
+    branches: [ "main" ]
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Validate composer.json and composer.lock
+      run: composer validate --strict
+      
+    - name: Deploy
+      uses: fjogeleit/http-request-action@master
+      with:
+        url: https://forge.laravel.com/servers/696358/sites/2027072/deploy/http?token=w3aLYQ7ggMFb2gqIXUre89P5ufN00GmmS1v1VOjS
+        method: "GET"
