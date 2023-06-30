@@ -1,5 +1,7 @@
 {
     "name": "vaugenwakeling/api",
+    "description": "vTunes backend dynamodb api",
+    "license": "MIT",
     "autoload": {
         "psr-4": {
             "Vaugenwakeling\\Api\\": "src/"
