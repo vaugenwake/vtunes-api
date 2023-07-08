@@ -2,3 +2,6 @@ vendor
 .env
 .idea
 .vscode
+dynamodb-data
+node_modulesi
+.serverless/

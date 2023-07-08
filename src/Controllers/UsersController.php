@@ -1,6 +1,6 @@
 <?php
 
-namespace Vaugenwakeling\Api\controllers;
+namespace Vaugenwakeling\Api\Controllers;
 
 use willitscale\Streetlamp\Attributes\Controller\RouteController;
 use willitscale\Streetlamp\Attributes\Path;
@@ -11,15 +11,15 @@ use willitscale\Streetlamp\Enums\HttpStatusCode;
 use willitscale\Streetlamp\Enums\MediaType;
 
 #[RouteController]
-class PingController
+class UsersController
 {
-    #[Path('/')]
+    #[Path('/user/{user_id}')]
     #[Method(HttpMethod::GET)]
-    public function index(): ResponseBuilder
+    public function show(): ResponseBuilder
     {
-        return (new ResponseBuilder)
+        return (new ResponseBuilder())
             ->setContentType(MediaType::APPLICATION_JSON)
-            ->setData(['pong'])
-            ->setHttpStatusCode(HttpStatusCode::HTTP_OK);
+            ->setHttpStatusCode(HttpStatusCode::HTTP_OK)
+            ->setData(['user' => 123]);
     }
 }

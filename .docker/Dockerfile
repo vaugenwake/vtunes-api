@@ -7,6 +7,7 @@ RUN apk upgrade
 RUN apk add bash
 RUN alias composer='php /usr/bin/composer'
 
+COPY ./.docker/.aws /home/www-data/.aws
 COPY . /var/www/html
 WORKDIR /var/www/html
 

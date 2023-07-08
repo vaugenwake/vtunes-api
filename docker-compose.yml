@@ -1,5 +1,9 @@
 version: '3'
 
+networks:
+  dynamodb:
+
+
 services:
   web:
     image: nginx:stable-alpine
@@ -10,13 +14,22 @@ services:
       - "8080:80"
     depends_on:
       - php
+    networks:
+      - dynamodb
   php:
     build:
       dockerfile: .docker/Dockerfile
       context: .
     volumes:
       - .:/var/www/html
+    environment:
+      - TABLE_NAME=MusicPlatform
+      - AWS_ENDPOINT=http://dynamodb:8000
+      - AWS_REGION=us-west-2
+      - AWS_PROFILE=localhost
     working_dir: /var/www/html
+    networks:
+      - dynamodb
   composer:
     build:
       dockerfile: .docker/Dockerfile
@@ -25,3 +38,27 @@ services:
       - .:/var/www/html
     working_dir: /var/www/html
     command: composer install
+
+  dynamodb:
+    image: amazon/dynamodb-local:latest
+    restart: always
+    volumes:
+      - ./dynamodb-data:/home/dynamodblocal/data
+    ports:
+      - 8025:8000
+    command: "-jar DynamoDBLocal.jar -sharedDb -dbPath /home/dynamodblocal/data/"
+    networks:
+      - dynamodb
+  dynamodb-admin:
+    image: aaronshaf/dynamodb-admin
+    ports:
+      - "8001:8001"
+    environment:
+      DYNAMO_ENDPOINT: "http://dynamodb:8000"
+      AWS_REGION: "us-west-2"
+      AWS_ACCESS_KEY_ID: local
+      AWS_SECRET_ACCESS_KEY: local
+    depends_on:
+      - dynamodb
+    networks:
+      - dynamodb

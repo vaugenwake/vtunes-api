@@ -18,6 +18,8 @@
         "willitscale/streetlamp": "^0.1.3",
         "aws/aws-sdk-php": "^3.275",
         "vlucas/phpdotenv": "^5.5",
-        "monolog/monolog": "^3.4"
+        "monolog/monolog": "^3.4",
+        "bref/bref": "^2.0",
+        "illuminate/collections": "^10.14"
     }
 }

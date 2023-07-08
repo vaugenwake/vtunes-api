@@ -1,0 +1,97 @@
+service: app
+
+provider:
+    name: aws
+    region: eu-west-1
+    iamRoleStatements:
+      - Effect: Allow
+        Action:
+          - "dynamodb:*"
+        Resource:
+          - { "Fn::GetAtt": [ "MusicPlatformTable", "Arn" ] }
+
+plugins:
+    - ./vendor/bref/bref
+
+resources:
+    Resources:
+        MusicPlatformTable:
+            Type: AWS::DynamoDB::Table
+            Properties:
+                TableName: MusicPlatform
+                AttributeDefinitions:
+                    - AttributeName: PK
+                      AttributeType: S
+                    - AttributeName: SK
+                      AttributeType: S
+                    - AttributeName: GSI1_PK
+                      AttributeType: S
+                    - AttributeName: GSI1_SK
+                      AttributeType: S
+                    - AttributeName: GSI2_PK
+                      AttributeType: S
+                    - AttributeName: GSI2_SK
+                      AttributeType: S
+                    - AttributeName: GSI3_PK
+                      AttributeType: S
+                    - AttributeName: GSI3_SK
+                      AttributeType: S
+                KeySchema:
+                    - AttributeName: PK
+                      KeyType: HASH
+                    - AttributeName: SK
+                      KeyType: RANGE
+                BillingMode: PAY_PER_REQUEST
+                GlobalSecondaryIndexes:
+                    - IndexName: GSI1_UsersEmail
+                      KeySchema:
+                          - AttributeName: GSI1_PK
+                            KeyType: HASH
+                          - AttributeName: GSI1_SK
+                            KeyType: RANGE
+                      Projection:
+                          ProjectionType: INCLUDE
+                          NonKeyAttributes:
+                              - id
+                              - email
+                              - password
+                              - activated
+                    - IndexName: GSI2_Albums
+                      KeySchema:
+                          - AttributeName: GSI2_PK
+                            KeyType: HASH
+                          - AttributeName: GSI2_SK
+                            KeyType: RANGE
+                      Projection:
+                          ProjectionType: INCLUDE
+                          NonKeyAttributes:
+                              - id
+                              - name
+                    - IndexName: GSI3_ArtistAlbum
+                      KeySchema:
+                          - AttributeName: GSI3_PK
+                            KeyType: HASH
+                          - AttributeName: GSI3_SK
+                            KeyType: RANGE
+                      Projection:
+                          ProjectionType: INCLUDE
+                          NonKeyAttributes:
+                              - id
+                              - name
+
+functions:
+    api:
+        handler: public/index.php
+        description: ""
+        runtime: php-82-fpm
+        timeout: 28 # in seconds (API Gateway has a timeout of 29 seconds)
+        events:
+            - httpApi: "*"
+        environment:
+            TABLE_NAME: !Ref MusicPlatformTable
+
+# Exclude files from deployment
+package:
+    patterns:
+        - "!node_modules/**"
+        - "!tests/**"

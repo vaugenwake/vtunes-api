@@ -8,8 +8,8 @@ use willitscale\Streetlamp\Router;
 
 require_once __DIR__ . '/../vendor/autoload.php';
 
-$dotent = \Dotenv\Dotenv::createImmutable(__DIR__ . '/../');
-$dotent->load();
+// $dotent = \Dotenv\Dotenv::createImmutable(__DIR__ . '/../');
+// $dotent->load();
 
 $logger = new \Monolog\Logger('api');
 $logger->pushHandler(new StreamHandler(
