@@ -23,14 +23,6 @@
     {
       "AttributeName": "GSI2_SK",
       "AttributeType": "S"
-    },
-    {
-      "AttributeName": "GSI3_PK",
-      "AttributeType": "S"
-    },
-    {
-      "AttributeName": "GSI3_SK",
-      "AttributeType": "S"
     }
   ],
   "TableName": "MusicPlatform",
@@ -88,35 +80,7 @@
         }
       ],
       "Projection": {
-        "ProjectionType": "INCLUDE",
-        "NonKeyAttributes": [
-          "id",
-          "name"
-        ]
-      },
-      "ProvisionedThroughput": {
-        "ReadCapacityUnits": 1,
-        "WriteCapacityUnits": 1
-      }
-    },
-    {
-      "IndexName": "GSI3_ArtistAlbum",
-      "KeySchema": [
-        {
-          "AttributeName": "GSI3_PK",
-          "KeyType": "HASH"
-        },
-        {
-          "AttributeName": "GSI3_SK",
-          "KeyType": "RANGE"
-        }
-      ],
-      "Projection": {
-        "ProjectionType": "INCLUDE",
-        "NonKeyAttributes": [
-          "id",
-          "name"
-        ]
+        "ProjectionType": "ALL"
       },
       "ProvisionedThroughput": {
         "ReadCapacityUnits": 1,

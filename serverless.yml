@@ -2,11 +2,18 @@ service: app
 
 provider:
     name: aws
-    region: eu-west-1
+    region: ${opt:region, 'eu-west-1'}
+    stage: ${opt:stage, 'dev'}
+    environment:
+      TABLE_NAME: MusicPlatform-${self:provider.stage}
     iamRoleStatements:
       - Effect: Allow
         Action:
-          - "dynamodb:*"
+          - "dynamodb:DescribeTable"
+          - "dynamodb:Query"
+          - "dynamodb:GetItem"
+          - "dynamodb:PutItem"
+          - "dynamodb:DeleteItem"
         Resource:
           - { "Fn::GetAtt": [ "MusicPlatformTable", "Arn" ] }
 
@@ -18,7 +25,7 @@ resources:
         MusicPlatformTable:
             Type: AWS::DynamoDB::Table
             Properties:
-                TableName: MusicPlatform
+                TableName: ${self:provider.environment.TABLE_NAME}
                 AttributeDefinitions:
                     - AttributeName: PK
                       AttributeType: S
@@ -31,10 +38,6 @@ resources:
                     - AttributeName: GSI2_PK
                       AttributeType: S
                     - AttributeName: GSI2_SK
-                      AttributeType: S
-                    - AttributeName: GSI3_PK
-                      AttributeType: S
-                    - AttributeName: GSI3_SK
                       AttributeType: S
                 KeySchema:
                     - AttributeName: PK
@@ -63,21 +66,7 @@ resources:
                           - AttributeName: GSI2_SK
                             KeyType: RANGE
                       Projection:
-                          ProjectionType: INCLUDE
-                          NonKeyAttributes:
-                              - id
-                              - name
-                    - IndexName: GSI3_ArtistAlbum
-                      KeySchema:
-                          - AttributeName: GSI3_PK
-                            KeyType: HASH
-                          - AttributeName: GSI3_SK
-                            KeyType: RANGE
-                      Projection:
-                          ProjectionType: INCLUDE
-                          NonKeyAttributes:
-                              - id
-                              - name
+                          ProjectionType: ALL
 
 functions:
     api:
@@ -88,7 +77,7 @@ functions:
         events:
             - httpApi: "*"
         environment:
-            TABLE_NAME: !Ref MusicPlatformTable
+            TABLE_NAME: ${self:provider.environment.TABLE_NAME}
 
 # Exclude files from deployment
 package:

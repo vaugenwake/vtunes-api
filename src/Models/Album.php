@@ -9,7 +9,6 @@ class Album implements \JsonSerializable
         private string $sortKey,
         private string $id,
         private string $name,
-        private string $type,
         private string $artist,
         private int $tracks,
         private string $coverImage
@@ -84,22 +83,6 @@ class Album implements \JsonSerializable
     /**
      * @return string
      */
-    public function getType(): string
-    {
-        return $this->type;
-    }
-
-    /**
-     * @param string $type
-     */
-    public function setType(string $type): void
-    {
-        $this->type = $type;
-    }
-
-    /**
-     * @return string
-     */
     public function getArtist(): string
     {
         return $this->artist;
@@ -152,9 +135,8 @@ class Album implements \JsonSerializable
             sortKey: $item['SK'],
             id: $item['id'],
             name: $item['name'],
-            type: $item['type'],
-            artist: $item['artist'],
-            tracks: $item['tracks'],
+            artist: $item['artist']['name'],
+            tracks: $item['track_count'],
             coverImage: $item['cover_img']
         );
     }
@@ -165,7 +147,6 @@ class Album implements \JsonSerializable
             'id' => $this->getId(),
             'name' => $this->getName(),
             'artist' => $this->getArtist(),
-            'type' => $this->getType(),
             'tracks' => $this->getTracks(),
             'cover_image' => $this->getCoverImage()
         ];
