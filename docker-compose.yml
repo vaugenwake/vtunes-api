@@ -3,6 +3,8 @@ version: '3'
 networks:
   dynamodb:
 
+volumes:
+  dynamodb:
 
 services:
   web:
@@ -41,12 +43,13 @@ services:
 
   dynamodb:
     image: amazon/dynamodb-local:latest
-    restart: always
+    restart: unless-stopped
     volumes:
-      - ./dynamodb-data:/home/dynamodblocal/data
+      - "./.docker/dynamodb:/home/dynamodblocal/data"
     ports:
-      - 8025:8000
-    command: "-jar DynamoDBLocal.jar -sharedDb -dbPath /home/dynamodblocal/data/"
+      - "8025:8000"
+    working_dir: /home/dynamodblocal
+    command: "-jar DynamoDBLocal.jar -sharedDb --dbPath /home/dynamodblocal/data/"
     networks:
       - dynamodb
   dynamodb-admin:
