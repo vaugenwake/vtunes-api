@@ -2,7 +2,7 @@
 
 namespace Vaugenwakeling\Api\Controllers;
 
-use Vaugenwakeling\Api\Repositories\UsersRepository;
+use Vaugenwakeling\Api\Repositories\SongsRepository;
 use willitscale\Streetlamp\Attributes\Controller\RouteController;
 use willitscale\Streetlamp\Attributes\Parameter\PathParameter;
 use willitscale\Streetlamp\Attributes\Path;
@@ -13,25 +13,25 @@ use willitscale\Streetlamp\Enums\HttpStatusCode;
 use willitscale\Streetlamp\Enums\MediaType;
 
 #[RouteController]
-class UsersController
+class AlbumSongsController
 {
     public function __construct(
-        private readonly UsersRepository $usersRepository
+        private readonly SongsRepository $songsRepository
     )
     {
     }
 
-    #[Path('/user/{user_id}')]
+    #[Path('/albums/{id}/songs')]
     #[Method(HttpMethod::GET)]
-    public function show(
-        #[PathParameter('user_id')] string $user_id
+    public function index(
+        #[PathParameter('id')] string $id
     ): ResponseBuilder
     {
-        $user = $this->usersRepository->getUserById($user_id);
+        $songs = $this->songsRepository->getSongsForAlbumById($id);
 
         return (new ResponseBuilder())
             ->setContentType(MediaType::APPLICATION_JSON)
             ->setHttpStatusCode(HttpStatusCode::HTTP_OK)
-            ->setData($user);
+            ->setData($songs);
     }
 }

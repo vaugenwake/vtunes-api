@@ -39,6 +39,14 @@ resources:
                       AttributeType: S
                     - AttributeName: GSI2_SK
                       AttributeType: S
+                    - AttributeName: GSI3_PK
+                      AttributeType: S
+                    - AttributeName: GSI3_SK
+                      AttributeType: S
+                    - AttributeName: GSI4_PK
+                      AttributeType: S
+                    - AttributeName: GSI4_SK
+                      AttributeType: S
                 KeySchema:
                     - AttributeName: PK
                       KeyType: HASH
@@ -53,12 +61,7 @@ resources:
                           - AttributeName: GSI1_SK
                             KeyType: RANGE
                       Projection:
-                          ProjectionType: INCLUDE
-                          NonKeyAttributes:
-                              - id
-                              - email
-                              - password
-                              - activated
+                          ProjectionType: ALL
                     - IndexName: GSI2_Albums
                       KeySchema:
                           - AttributeName: GSI2_PK
@@ -67,6 +70,26 @@ resources:
                             KeyType: RANGE
                       Projection:
                           ProjectionType: ALL
+                    - IndexName: GSI3_ArtistAlbums
+                      KeySchema:
+                        - AttributeName: GSI3_PK
+                          KeyType: HASH
+                        - AttributeName: GSI3_SK
+                          KeyType: RANGE
+                      Projection:
+                        ProjectionType: INCLUDE
+                        NonKeyAttributes:
+                          - id
+                          - name
+                          - cover_img
+                    - IndexName: GSI4_AlbumSongs
+                      KeySchema:
+                        - AttributeName: GSI4_PK
+                          KeyType: HASH
+                        - AttributeName: GSI4_SK
+                          KeyType: RANGE
+                      Projection:
+                        ProjectionType: ALL
 
 functions:
     api:

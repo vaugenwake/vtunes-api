@@ -4,6 +4,7 @@ namespace Vaugenwakeling\Api\Repositories;
 
 use Illuminate\Support\Collection;
 use Vaugenwakeling\Api\Models\Album;
+use Vaugenwakeling\Api\Models\ArtistAlbum;
 
 class AlbumsRepository extends RepositoryAbstract
 {
@@ -12,15 +13,15 @@ class AlbumsRepository extends RepositoryAbstract
         $albums = $this->dbService->getClient()
             ->query([
                'TableName' => $this->getTableName(),
-               'KeyConditionExpression' => 'PK = :pk and begins_with(SK, :sk)',
+               'IndexName' => 'GSI3_ArtistAlbums',
+               'KeyConditionExpression' => 'GSI3_PK = :pk',
                 'ExpressionAttributeValues' =>  array (
-                    ':pk'  => array('S' => "ARTIST#{$id}"),
-                    ':sk' => array('S' => "ALBUM")
+                    ':pk'  => array('S' => "ARTIST#{$id}")
                 )
             ]);
 
         return collect($albums['Items'])->map(function ($item) {
-            return Album::fromItem($this->marshaler->unmarshalItem($item));
+            return ArtistAlbum::fromItem($this->marshaler->unmarshalItem($item));
         });
     }
 
