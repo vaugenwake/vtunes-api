@@ -36,4 +36,19 @@ class SongsRepository extends RepositoryAbstract
             return Song::fromItem($this->marshaler->unmarshalItem($item));
         });
     }
+
+    public function getSongByAlbumId(string $albumId, string $songId): Song
+    {
+        $song = $this->dbService->getClient()
+            ->query([
+                'TableName' => $this->getTableName(),
+                'KeyConditionExpression' => 'PK = :pk and begins_with(SK, :sk)',
+                'ExpressionAttributeValues' =>  array (
+                    ':pk'  => array('S' => "ALBUM#{$albumId}"),
+                    ':sk' => array('S' => "SONG#{$songId}")
+                )
+            ]);
+
+        return Song::fromItem($this->marshaler->unmarshalItem($song['Items'][0]));
+    }
 }

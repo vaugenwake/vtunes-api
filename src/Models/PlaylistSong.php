@@ -2,17 +2,14 @@
 
 namespace Vaugenwakeling\Api\Models;
 
-class Song implements \JsonSerializable
+class PlaylistSong implements \JsonSerializable
 {
     public function __construct(
         private string $partitionKey,
         private string $sortKey,
         private string $id,
         private string $name,
-        private string $type,
-        private int $trackCount,
-        private int $duration,
-        private bool $explicit
+        private int $duration
     )
     {
     }
@@ -82,38 +79,6 @@ class Song implements \JsonSerializable
     }
 
     /**
-     * @return string
-     */
-    public function getType(): string
-    {
-        return $this->type;
-    }
-
-    /**
-     * @param string $type
-     */
-    public function setType(string $type): void
-    {
-        $this->type = $type;
-    }
-
-    /**
-     * @return int
-     */
-    public function getTrackCount(): int
-    {
-        return $this->trackCount;
-    }
-
-    /**
-     * @param int $trackCount
-     */
-    public function setTrackCount(int $trackCount): void
-    {
-        $this->trackCount = $trackCount;
-    }
-
-    /**
      * @return int
      */
     public function getDuration(): int
@@ -129,22 +94,6 @@ class Song implements \JsonSerializable
         $this->duration = $duration;
     }
 
-    /**
-     * @return bool
-     */
-    public function isExplicit(): bool
-    {
-        return $this->explicit;
-    }
-
-    /**
-     * @param bool $explicit
-     */
-    public function setExplicit(bool $explicit): void
-    {
-        $this->explicit = $explicit;
-    }
-
     public static function fromItem(array $item): self
     {
         return new self(
@@ -152,33 +101,16 @@ class Song implements \JsonSerializable
             sortKey: $item['SK'],
             id: $item['id'],
             name: $item['name'],
-            type: $item['type'],
-            trackCount: $item['track_num'],
-            duration: $item['duration'],
-            explicit: $item['explicit']
+            duration: $item['duration']
         );
     }
 
-    public function toNestedObject(): array
+    public function jsonSerialize(): mixed
     {
         return [
             'id' => $this->getId(),
             'name' => $this->getName(),
-            'type' => $this->getType(),
-            'duration' => $this->getDuration(),
-            'explicit' => $this->isExplicit()
-        ];
-    }
-
-    public function jsonSerialize(): array
-    {
-        return [
-            'id' => $this->getId(),
-            'name' => $this->getName(),
-            'type' => $this->getType(),
-            'track_count' => $this->getTrackCount(),
-            'duration' => $this->getDuration(),
-            'explicit' => $this->isExplicit()
+            'duration' => $this->getDuration()
         ];
     }
 }

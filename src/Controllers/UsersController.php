@@ -21,7 +21,7 @@ class UsersController
     {
     }
 
-    #[Path('/user/{user_id}')]
+    #[Path('/users/{user_id}')]
     #[Method(HttpMethod::GET)]
     public function show(
         #[PathParameter('user_id')] string $user_id
