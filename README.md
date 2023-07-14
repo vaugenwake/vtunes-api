@@ -3,9 +3,9 @@
 This a simple small microservice application written as an example of using DynamoDB in a move complicated application with multiple relationships and entities.
 
 ## Components and Packages
-* AWS SDK
-* (Streetlamp Router)[https://github.com/willitscale/streetlamp]
-* KSUID
+- AWS SDK
+- [Streetlamp Router](https://github.com/willitscale/streetlamp)
+- KSUID
 
 ## Installing and running
 
