@@ -1,0 +1,351 @@
+_type: export
+__export_format: 4
+__export_date: 2023-07-14T16:05:30.880Z
+__export_source: insomnia.desktop.app:v2023.4.0
+resources:
+  - _id: req_aea427f429b94b85ac9a4c6fc2af1d44
+    parentId: fld_2298e7beab03499684b861bb91a40fd3
+    modified: 1689342665816
+    created: 1689188487047
+    url: "{{ _.endpoint }}/playlists/2SZ8HGDE1Tk51uFaF9STtRZQlAB/songs/"
+    name: Link song to playlist
+    description: ""
+    method: POST
+    body:
+      mimeType: application/json
+      text: |-
+        {
+        	"song_id": "1HNkqx9Ahdgi1Ixy2xkKkL",
+        	"album_id": "1xn54DMo2qIqBuMqHtUsFd"
+        }
+    parameters: []
+    headers:
+      - name: Content-Type
+        value: application/json
+    authentication: {}
+    metaSortKey: -1689117426032.25
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: fld_2298e7beab03499684b861bb91a40fd3
+    parentId: wrk_7f5ff2c783b54826bee602cbee4aaedd
+    modified: 1689188471470
+    created: 1689188471470
+    name: Playlist
+    description: ""
+    environment: {}
+    environmentPropertyOrder: null
+    metaSortKey: -1689188471470
+    _type: request_group
+  - _id: wrk_7f5ff2c783b54826bee602cbee4aaedd
+    parentId: null
+    modified: 1689117329459
+    created: 1689117329459
+    name: vTunes API
+    description: ""
+    scope: collection
+    _type: workspace
+  - _id: req_d1702cf58b9d4de08a19bb54d696e563
+    parentId: fld_2298e7beab03499684b861bb91a40fd3
+    modified: 1689342680269
+    created: 1689191508669
+    url: "{{ _.endpoint }}/playlists/2SZ8HGDE1Tk51uFaF9STtRZQlAB/songs/"
+    name: Get playlist songs
+    description: ""
+    method: GET
+    body:
+      mimeType: application/json
+      text: ""
+    parameters: []
+    headers:
+      - name: Content-Type
+        value: application/json
+    authentication: {}
+    metaSortKey: -1689117426029.125
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_c951ed2ba8b04551851f6d06823f7963
+    parentId: fld_adfd6fd7daf549f1ac05de0c4f99a792
+    modified: 1689342693579
+    created: 1689117562419
+    url: "{{ _.endpoint }}/login"
+    name: Login User
+    description: ""
+    method: POST
+    body:
+      mimeType: application/json
+      text: |-
+        {
+        	"email": "test1@example.com",
+        	"password": "testing12"
+        }
+    parameters: []
+    headers:
+      - name: Content-Type
+        value: application/json
+    authentication: {}
+    metaSortKey: -1689117426076
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: fld_adfd6fd7daf549f1ac05de0c4f99a792
+    parentId: wrk_7f5ff2c783b54826bee602cbee4aaedd
+    modified: 1689117412625
+    created: 1689117412625
+    name: Users
+    description: ""
+    environment: {}
+    environmentPropertyOrder: null
+    metaSortKey: -1689117412625
+    _type: request_group
+  - _id: req_4a6a5b8e92614a869a60c47d2b08167c
+    parentId: fld_adfd6fd7daf549f1ac05de0c4f99a792
+    modified: 1689342647690
+    created: 1689117673890
+    url: "{{ _.endpoint }}/users/2SOrFbK6LZE6fvH4Vp1xg1VjktK/playlists"
+    name: Create new playlist
+    description: ""
+    method: POST
+    body:
+      mimeType: application/json
+      text: |-
+        {
+        	"name": "This is a demo playlist"
+        }
+    parameters: []
+    headers:
+      - name: Content-Type
+        value: application/json
+    authentication: {}
+    metaSortKey: -1689117426051
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_6229cb1ad72c421cab15b80b8302d9f5
+    parentId: fld_adfd6fd7daf549f1ac05de0c4f99a792
+    modified: 1689188246602
+    created: 1689119494634
+    url: "{{ _.endpoint }}/users/2SOrFbK6LZE6fvH4Vp1xg1VjktK/playlists/"
+    name: Get users playlists
+    description: ""
+    method: GET
+    body:
+      mimeType: application/json
+      text: ""
+    parameters: []
+    headers:
+      - name: Content-Type
+        value: application/json
+    authentication: {}
+    metaSortKey: -1689117426038.5
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_47a2fad0e9284fe194e4599afca04d39
+    parentId: fld_adfd6fd7daf549f1ac05de0c4f99a792
+    modified: 1689117646492
+    created: 1689117617748
+    url: "{{ _.endpoint }}/users/2SOrFbK6LZE6fvH4Vp1xg1VjktK"
+    name: Get User
+    description: ""
+    method: GET
+    body:
+      mimeType: multipart/form-data
+      params: []
+    parameters: []
+    headers:
+      - name: Content-Type
+        value: multipart/form-data
+    authentication: {}
+    metaSortKey: -1689117426026
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_74594681c30a463cacd0137fdf5e5e16
+    parentId: fld_5e1ab13ef1954ba89a4c5516ad9b2be5
+    modified: 1689117514472
+    created: 1689117505303
+    url: "{{ _.endpoint }}/albums"
+    name: Get Albums
+    description: ""
+    method: GET
+    body: {}
+    parameters: []
+    headers: []
+    authentication: {}
+    metaSortKey: -1689117426226
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: fld_5e1ab13ef1954ba89a4c5516ad9b2be5
+    parentId: wrk_7f5ff2c783b54826bee602cbee4aaedd
+    modified: 1689117398371
+    created: 1689117398371
+    name: Albums
+    description: ""
+    environment: {}
+    environmentPropertyOrder: null
+    metaSortKey: -1689117398371
+    _type: request_group
+  - _id: req_e522211fad0a422d83e4d6029bbc7404
+    parentId: fld_5e1ab13ef1954ba89a4c5516ad9b2be5
+    modified: 1689117536205
+    created: 1689117528416
+    url: "{{ _.endpoint }}/albums/0BsMZIueWsJLWng8A7sE8e"
+    name: Get Album
+    description: ""
+    method: GET
+    body: {}
+    parameters: []
+    headers: []
+    authentication: {}
+    metaSortKey: -1689117426176
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_859a243eb4a64ad694c69895f4c46636
+    parentId: fld_5e1ab13ef1954ba89a4c5516ad9b2be5
+    modified: 1689199637558
+    created: 1689117543903
+    url: "{{ _.endpoint }}/albums/1xn54DMo2qIqBuMqHtUsFd/songs"
+    name: Get Album Songs
+    description: ""
+    method: GET
+    body: {}
+    parameters: []
+    headers: []
+    authentication: {}
+    metaSortKey: -1689117426126
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_0c90e7dbb41d4b339d371c03aa12c6e1
+    parentId: fld_09aafb50029b400c9af8678a8d397c3b
+    modified: 1689117467190
+    created: 1689117426326
+    url: "{{ _.endpoint }}/artists/6eUKZXaKkcviH0Ku9w2n3V"
+    name: Get Artist
+    description: ""
+    method: GET
+    body: {}
+    parameters: []
+    headers: []
+    authentication: {}
+    metaSortKey: -1689117426326
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: fld_09aafb50029b400c9af8678a8d397c3b
+    parentId: wrk_7f5ff2c783b54826bee602cbee4aaedd
+    modified: 1689117390868
+    created: 1689117390868
+    name: Artists
+    description: ""
+    environment: {}
+    environmentPropertyOrder: null
+    metaSortKey: -1689117390868
+    _type: request_group
+  - _id: req_03521da1ff0b48499eb354d3fb208e7d
+    parentId: fld_09aafb50029b400c9af8678a8d397c3b
+    modified: 1689117484840
+    created: 1689117481546
+    url: "{{ _.endpoint }}/artists/6eUKZXaKkcviH0Ku9w2n3V/albums"
+    name: Get Artist Albums
+    description: ""
+    method: GET
+    body: {}
+    parameters: []
+    headers: []
+    authentication: {}
+    metaSortKey: -1689117426276
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: env_7392c2eb31320acdca1352b8ec7ab9a93225c02a
+    parentId: wrk_7f5ff2c783b54826bee602cbee4aaedd
+    modified: 1689117329461
+    created: 1689117329461
+    name: Base Environment
+    data: {}
+    dataPropertyOrder: null
+    color: null
+    isPrivate: false
+    metaSortKey: 1689117329461
+    _type: environment
+  - _id: jar_7392c2eb31320acdca1352b8ec7ab9a93225c02a
+    parentId: wrk_7f5ff2c783b54826bee602cbee4aaedd
+    modified: 1689117329463
+    created: 1689117329463
+    name: Default Jar
+    cookies: []
+    _type: cookie_jar
+  - _id: env_c959a2e5348543e2b300c5f2f71623e7
+    parentId: env_7392c2eb31320acdca1352b8ec7ab9a93225c02a
+    modified: 1689198921117
+    created: 1689117363033
+    name: Local
+    data:
+      endpoint: http://localhost:8080
+    dataPropertyOrder:
+      "&":
+        - endpoint
+    color: "#44ff00"
+    isPrivate: false
+    metaSortKey: 1689117363033
+    _type: environment
